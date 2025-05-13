@@ -103,9 +103,10 @@ class GeminiAdapter(BaseLLMAdapter):
         self.model_name = model_name
         self.max_tokens = max_tokens
         self.temperature = temperature
-        self.timeout = timeout
+        # gemini超时时间是毫秒
+        self.timeout = timeout * 1000
 
-        self._client = genai.Client(api_key=self.api_key,http_options=types.HttpOptions(base_url=base_url))
+        self._client = genai.Client(api_key=self.api_key,http_options=types.HttpOptions(base_url=base_url,timeout=self.timeout))
 
     def invoke(self, prompt: str) -> str:
         try:
@@ -116,7 +117,6 @@ class GeminiAdapter(BaseLLMAdapter):
                     max_output_tokens=self.max_tokens,
                     temperature=self.temperature,
                 ),
-                # timeout=self.timeout  # 添加超时参数
             )
             if response and response.text:
                 return response.text

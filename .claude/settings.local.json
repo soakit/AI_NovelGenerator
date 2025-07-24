@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/erkoliu/Documents/github/AI_NovelGenerator -name \"*.spec\" -o -name \"Makefile\" -o -name \"setup.py\" -o -name \"pyproject.toml\")",
+      "Bash(ls -la /Users/erkoliu/Documents/github/AI_NovelGenerator)"
+    ],
+    "deny": []
+  }
+}
